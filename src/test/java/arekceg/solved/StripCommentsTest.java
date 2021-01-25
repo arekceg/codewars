@@ -1,8 +1,10 @@
+package arekceg.solved;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import arekceg.StripComments;
+import arekceg.solved.StripComments;
 
 public class StripCommentsTest {
 
