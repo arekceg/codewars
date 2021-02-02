@@ -1,5 +1,6 @@
 package arekceg.solved;
 //https://www.codewars.com/kata/52c4dd683bfd3b434c000292/solutions
+
 import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
