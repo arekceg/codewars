@@ -2,6 +2,9 @@ package arekceg;
 
 import java.util.*;
 import java.util.stream.*;
+
+import arekceg.solved.Counter;
+import arekceg.solved.ThreadedCounting;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

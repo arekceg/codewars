@@ -1,4 +1,4 @@
-package arekceg;
+package arekceg.solved;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
