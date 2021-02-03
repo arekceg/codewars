@@ -1,4 +1,4 @@
-package arekceg;
+package arekceg.solved;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -6,10 +6,10 @@ import java.util.Comparator;
 //https://www.codewars.com/kata/56f4ff45af5b1f8cd100067d/train/java
 public class SortNumbersAlphabetically {
 
-    private static String[] UNITS = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
-    private static String[] TENS = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+    private static final String[] UNITS = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+    private static final String[] TENS = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
-    public static int[] sort(final int array[]) {
+    public static int[] sort(final int[] array) {
         return
                 Arrays.stream(array)
                         .boxed()
