@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 //https://www.codewars.com/kata/56f4ff45af5b1f8cd100067d/train/java
-public class Dinglemouse {
+public class SortNumbersAlphabetically {
 
     private static String[] UNITS = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
     private static String[] TENS = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
@@ -13,7 +13,7 @@ public class Dinglemouse {
         return
                 Arrays.stream(array)
                         .boxed()
-                        .sorted(Comparator.comparing(Dinglemouse::toName))
+                        .sorted(Comparator.comparing(SortNumbersAlphabetically::toName))
                         .map(String::valueOf)
                         .mapToInt(Integer::valueOf)
                         .toArray();
