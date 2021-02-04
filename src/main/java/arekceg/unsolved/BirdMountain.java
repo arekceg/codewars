@@ -1,4 +1,5 @@
 package arekceg.unsolved;
+
 //https://www.codewars.com/kata/5c09ccc9b48e912946000157/train/java
 public class BirdMountain {
 
@@ -17,7 +18,7 @@ public class BirdMountain {
                     System.out.print(" ");
                     continue;
                 }
-                if(j > mountainCenterAtRow(i-1, mountain)) continue;
+                if (j > mountainCenterAtRow(i - 1, mountain)) continue;
                 pointHeight = heightAtCoordinates(i, j, mountain);
                 System.out.print(pointHeight);
                 maxHeight = Math.max(maxHeight, pointHeight);
