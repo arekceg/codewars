@@ -34,7 +34,7 @@ public class Matrix {
 
     public Matrix add(Matrix matrixToAdd) {
         if (matrixToAdd.getColumnCount() != this.getColumnCount() ||
-            matrixToAdd.getRowCount() != this.getRowCount()) {
+                matrixToAdd.getRowCount() != this.getRowCount()) {
             throw new IllegalArgumentException();
         }
         final double[][] dataToAdd = matrixToAdd.toArray();
@@ -47,7 +47,7 @@ public class Matrix {
         return new Matrix(finalData);
     }
 
-    public Matrix multiply(double factor){
+    public Matrix multiply(double factor) {
         final double[][] finalData = new double[this.getRowCount()][this.getColumnCount()];
         for (int i = 0; i < this.data.length; i++) {
             for (int j = 0; j < this.data[i].length; j++) {
@@ -59,9 +59,17 @@ public class Matrix {
 
     public Matrix multiply(Matrix secondMatrix) {
         final double[][] finalData = new double[this.getRowCount()][secondMatrix.getColumnCount()];
-        for (int i = 0; i < finalData.length; i++) {
-            for (int j = 0; j < finalData[i].length; j++) {
-                //TODO
+        final double[][] firstMatrixData = this.toArray();
+        final double[][] secondMatrixData = secondMatrix.toArray();
+        for (int i = 0; i < this.getRowCount(); i++) {
+            for (int j = 0; j < secondMatrix.getColumnCount(); j++) {
+                int k = 0;
+                int calculatedValue = 0;
+                while (k <= this.getRowCount() || k <= secondMatrix.getColumnCount()){
+                    calculatedValue += (firstMatrixData[i][k] * secondMatrixData[k][j]);
+                    k++;
+                }
+                finalData[i][j] = calculatedValue;
             }
         }
         return new Matrix(finalData);
@@ -104,6 +112,4 @@ public class Matrix {
         }
         return data;
     }
-
-    // TODO: Add transpose, add, mutliply(double), multiply(Matrix)
 }

@@ -30,28 +30,28 @@ public class MatrixTest {
             -2,     -1
         );
 
-        assertArrayEquals(new double[][] {
-            new double[] { 5,     -42.117, 52.35 },
-            new double[] { -3,    69,      4 },
-            new double[] { 2.5,   73.614,  -11 }
-        }, m1.transpose().toArray());
-
-        assertArrayEquals(new double[][] {
-            new double[] { 1,    -4 },
-            new double[] { 2,    3 },
-            new double[] { 3,    1 }
-        }, m3.transpose().toArray());
-
-        assertArrayEquals(new double[][] {
-            new double[] { 0.75,    55.667,   26.8 },
-            new double[] { 472.383, 157,      -70.536 },
-            new double[] { 551.86,  -339.176, 1203.2 }
-        }, m1.add(m2).toArray());
-
-        assertArrayEquals(new double[][] {
-            new double[] { 2,   4,   6 },
-            new double[] { -8,  6,   2 }
-        }, m3.multiply(2).toArray());
+//        assertArrayEquals(new double[][] {
+//            new double[] { 5,     -42.117, 52.35 },
+//            new double[] { -3,    69,      4 },
+//            new double[] { 2.5,   73.614,  -11 }
+//        }, m1.transpose().toArray());
+//
+//        assertArrayEquals(new double[][] {
+//            new double[] { 1,    -4 },
+//            new double[] { 2,    3 },
+//            new double[] { 3,    1 }
+//        }, m3.transpose().toArray());
+//
+//        assertArrayEquals(new double[][] {
+//            new double[] { 0.75,    55.667,   26.8 },
+//            new double[] { 472.383, 157,      -70.536 },
+//            new double[] { 551.86,  -339.176, 1203.2 }
+//        }, m1.add(m2).toArray());
+//
+//        assertArrayEquals(new double[][] {
+//            new double[] { 2,   4,   6 },
+//            new double[] { -8,  6,   2 }
+//        }, m3.multiply(2).toArray());
 
         assertArrayEquals(new double[][] {
             new double[] { -9,  1 },
