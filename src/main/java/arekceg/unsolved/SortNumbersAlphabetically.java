@@ -1,9 +1,10 @@
-package arekceg.solved;
+package arekceg.unsolved;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
 //https://www.codewars.com/kata/56f4ff45af5b1f8cd100067d/train/java
+// nie moje rozwiązanie! przeczytac i zrozumieć
 public class SortNumbersAlphabetically {
 
     private static final String[] UNITS = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};

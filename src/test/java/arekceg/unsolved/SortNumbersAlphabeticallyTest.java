@@ -1,6 +1,6 @@
-package arekceg.solved;
+package arekceg.unsolved;
 
-import arekceg.solved.SortNumbersAlphabetically;
+import arekceg.unsolved.SortNumbersAlphabetically;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
