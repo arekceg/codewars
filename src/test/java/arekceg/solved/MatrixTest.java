@@ -1,7 +1,9 @@
-package arekceg;
+package arekceg.solved;
 
 import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
+
+import arekceg.solved.Matrix;
 
 public class MatrixTest {
 

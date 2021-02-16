@@ -1,4 +1,4 @@
-package arekceg;
+package arekceg.solved;
 
 //https://www.codewars.com/kata/57fa8d4a2c7f926c2200017f/train/java
 public class Matrix {
@@ -100,8 +100,8 @@ public class Matrix {
         }
     }
 
-    private void validateData(double v) {
-        if (Double.isNaN(v)) throw new IllegalArgumentException();
+    private void validateData(double element) {
+        if (Double.isNaN(element)) throw new IllegalArgumentException();
     }
 
     private double[][] createData(int rows, int cols, double[] elements) {
