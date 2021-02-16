@@ -1,25 +1,17 @@
 package arekceg;
 
-import java.util.Arrays;
-
 //https://www.codewars.com/kata/57fa8d4a2c7f926c2200017f/train/java
 public class Matrix {
-    private double[][] data;
-    private int rowCount;
-    private int columnCount;
+    private final double[][] data;
 
     public Matrix(double[][] elements) {
         validateData(elements);
-        this.data = elements;
-        this.rowCount = data.length;
-        this.columnCount = data[0].length;
+        this.data = deepCopyArray(elements);
     }
 
     public Matrix(int rows, int cols, double... elements) {
         validateData(elements);
         this.data = createData(rows, cols, elements);
-        this.rowCount = rows;
-        this.columnCount = cols;
     }
 
     public Matrix transpose() {
@@ -34,7 +26,7 @@ public class Matrix {
 
     public Matrix add(Matrix matrixToAdd) {
         if (matrixToAdd.getColumnCount() != this.getColumnCount() ||
-                matrixToAdd.getRowCount() != this.getRowCount()) {
+            matrixToAdd.getRowCount() != this.getRowCount()) {
             throw new IllegalArgumentException();
         }
         final double[][] dataToAdd = matrixToAdd.toArray();
@@ -58,14 +50,17 @@ public class Matrix {
     }
 
     public Matrix multiply(Matrix secondMatrix) {
+        if (this.getColumnCount() != secondMatrix.getRowCount()) {
+            throw new IllegalArgumentException();
+        }
         final double[][] finalData = new double[this.getRowCount()][secondMatrix.getColumnCount()];
         final double[][] firstMatrixData = this.toArray();
         final double[][] secondMatrixData = secondMatrix.toArray();
         for (int i = 0; i < this.getRowCount(); i++) {
             for (int j = 0; j < secondMatrix.getColumnCount(); j++) {
                 int k = 0;
-                int calculatedValue = 0;
-                while (k <= this.getRowCount() || k <= secondMatrix.getColumnCount()){
+                double calculatedValue = 0;
+                while (k < secondMatrixData.length) {
                     calculatedValue += (firstMatrixData[i][k] * secondMatrixData[k][j]);
                     k++;
                 }
@@ -76,30 +71,37 @@ public class Matrix {
     }
 
     public int getRowCount() {
-        return rowCount;
+        return this.toArray().length;
     }
 
     public int getColumnCount() {
-        return columnCount;
+        return this.toArray()[0].length;
     }
 
     public double[][] toArray() {
-        return Arrays.copyOf(data, data.length);
+        return deepCopyArray(data);
     }
 
     private void validateData(double[][] elements) throws IllegalArgumentException {
         if (elements == null || elements.length == 0) {
             throw new IllegalArgumentException();
         }
-        for (int i = 0; i < elements.length - 1; i++) {
+        for (int i = 0; i < elements.length; i++) {
             validateData(elements[i]);
         }
     }
 
-    private void validateData(double[] element) {
-        if (element == null || element.length == 0) {
+    private void validateData(double[] elements) {
+        if (elements == null || elements.length == 0) {
             throw new IllegalArgumentException();
         }
+        for (int i = 0; i < elements.length; i++) {
+            validateData(elements[i]);
+        }
+    }
+
+    private void validateData(double v) {
+        if (Double.isNaN(v)) throw new IllegalArgumentException();
     }
 
     private double[][] createData(int rows, int cols, double[] elements) {
@@ -111,5 +113,14 @@ public class Matrix {
             }
         }
         return data;
+    }
+
+    private double[][] deepCopyArray(double[][] source) {
+        double[][] copy = new double[source.length][];
+        for (int i = 0; i < copy.length; ++i) {
+            copy[i] = new double[source[i].length];
+            System.arraycopy(source[i], 0, copy[i], 0, copy[i].length);
+        }
+        return copy;
     }
 }
