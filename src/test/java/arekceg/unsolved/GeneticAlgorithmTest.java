@@ -1,5 +1,6 @@
-package arekceg;
+package arekceg.unsolved;
 
+import arekceg.unsolved.GeneticAlgorithm;
 import org.junit.jupiter.api.Test;
 
 class GeneticAlgorithmTest {

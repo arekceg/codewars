@@ -1,4 +1,4 @@
-package arekceg;
+package arekceg.unsolved;
 
 //https://www.codewars.com/kata/526f35b9c103314662000007/train/java
 
@@ -7,6 +7,7 @@ import java.util.function.ToDoubleFunction;
 
 public class GeneticAlgorithm {
     private final int populationSize = 150;
+    private final Random random = new Random();
     private ToDoubleFunction<String> fitness;
     private double p_c;
     private double p_m;
@@ -38,7 +39,6 @@ public class GeneticAlgorithm {
     private String generateChromosome(int length) {
         if (length == 0) return "";
         final StringBuilder sb = new StringBuilder();
-        final Random random = new Random();
         for (int i = 0; i < length; i++) {
             sb.append(random.nextBoolean() ? 1 : 0);
         }
@@ -46,24 +46,33 @@ public class GeneticAlgorithm {
     }
 
     private String select(Map<String, Double> chromosomeToFitnessMap) {
-        // TODO: POPRAWIĆ! selectionProbability ma sie zwiększać przy każdym kroku o fintess/fitnessSum
-        final Random random = new Random();
-        final Double fitnessesSum = chromosomeToFitnessMap.values().stream().reduce(Double::sum).get();
-        int selectionProbability;
-        String selectedChromosome = "";
-        while (selectedChromosome.equals("")) {
-            selectedChromosome = chromosomeToFitnessMap.keySet().stream()
-                    .filter(chromosome -> {
-                        final double selectionProbability = chromosomeToFitnessMap.get(chromosome) / fitnessesSum;
-                        return random.nextInt(101) < selectionProbability * 100;
-                    }).findFirst().orElse("");
+        double[] cumulativeFitnesses = new double[chromosomeToFitnessMap.size()];
+        String[] chromosomeArray = new String[chromosomeToFitnessMap.size()];
+        cumulativeFitnesses[0] = (double) chromosomeToFitnessMap.values().toArray()[0];
+        int iterator = 1;
+        for (String chromosome : chromosomeToFitnessMap.keySet()){
+            if(iterator < chromosomeToFitnessMap.size()){
+            double fitness =  chromosomeToFitnessMap.get(chromosome);
+            chromosomeArray[iterator] = chromosome;
+            cumulativeFitnesses[iterator] = cumulativeFitnesses[iterator - 1] + fitness;
+            iterator++;
+            }
         }
-        return selectedChromosome;
+//        for (int i = 0; i < chromosomeToFitnessMap.size(); i++)
+//        {
+            double randomFitness = random.nextDouble() * cumulativeFitnesses[cumulativeFitnesses.length - 1];
+            int index = Arrays.binarySearch(cumulativeFitnesses, randomFitness);
+            if (index < 0)
+            {
+                // Convert negative insertion point to array index.
+                index = Math.abs(index + 1);
+            }
+//        }
+        return chromosomeArray[index];
     }
 
     private String mutate(String chromosome, double p) {
         final StringBuilder sb = new StringBuilder();
-        final Random random = new Random();
         chromosome.chars()
                 .map(bit -> {
                     final int bitInt = Character.getNumericValue(bit);
@@ -82,7 +91,6 @@ public class GeneticAlgorithm {
     private String[] crossover(String chromosome1, String chromosome2) {
         int crossOverBitIndex = chromosome1.length();
         final String[] crossedChromosomes = new String[2];
-        final Random random = new Random();
         for (int i = 0; i < chromosome1.length(); i++) {
             if (random.nextBoolean()) {
                 crossOverBitIndex = i;
@@ -97,7 +105,6 @@ public class GeneticAlgorithm {
 
     private Map<String, Double> generateNewChromosomesAndFitnessMap(Map<String, Double> chromosomesAndFitnessMap) {
         final Map<String, Double> newMap = new HashMap<>();
-        final Random random = new Random();
         String[] selectedChromosomes = new String[]{"", ""};
         for (int i = 0; i < populationSize / 2; i++) {
             while (selectedChromosomes[0].equals(selectedChromosomes[1])) {
