@@ -1,4 +1,4 @@
-package arekceg;
+package arekceg.solved;
 
 
 import org.junit.Test;
@@ -34,4 +34,5 @@ public class FibkindTest {
         dotest2(60441, 30054);
         dotest2(21361, 10581);
     }
+
 }
