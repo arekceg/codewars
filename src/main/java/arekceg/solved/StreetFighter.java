@@ -8,8 +8,8 @@ public class StreetFighter {
     public static String[] streetFighterSelection(String[][] fighters, int[] position, String[] moves) {
         List<String> fighterSelectionHistory = new ArrayList<>();
 
-        for (int i = 0; i < moves.length; i++) {
-            position = move(fighters, position, moves[i]);
+        for (String move : moves) {
+            position = move(fighters, position, move);
             String currentFighter = fighters[Math.abs(position[1])][position[0]];
             fighterSelectionHistory.add(currentFighter);
         }
